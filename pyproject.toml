@@ -1,0 +1,15 @@
+[project]
+name = "route-ai"
+version = "0.0.0"
+description = "A Managed Deep Agent project."
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.28.1",
+    "managed-deepagents==0.9.5",
+    "pypdf>=6.21.2",
+    "reportlab>=5.1.0",
+    "tavily-python>=0.8.5",
+]
+
+[tool.mda]
+python-version = "3.14"
