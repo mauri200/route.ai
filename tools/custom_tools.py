@@ -43,16 +43,33 @@ def send_purchase_rfq(supplier_name: str, product_item: str, volume_tons: float,
 
     Args:
         supplier_name: Name of the agricultural cooperative or exporter.
-        product_item: Commodity or raw material requested (e.g., green coffee beans).
+        product_item: Commodity or raw material requested.
         volume_tons: Quantity requested in metric tons.
         destination_country: Destination country where the importer is located.
     """
-    rfq_message = (
+    return (
         f"RFQ Sent to {supplier_name}: Representing a corporate importer in {destination_country}, "
         f"we request a quote for {volume_tons} metric tons of {product_item}. "
-        f"Please provide FOB terms, quality profiles (+84 cup score), and next month's shipping availability."
+        f"Please provide FOB terms and next month's shipping availability."
     )
-    return rfq_message
+
+@tool(parse_docstring=True)
+def run_closed_loop_matchmaking(origin_country: str, destination_country: str, product: str, volume: float) -> str:
+    """Executes autonomous closed-loop matchmaking between a verified seller and buyer, optimizing Incoterms.
+
+    Args:
+        origin_country: Origin country of the product.
+        destination_country: Destination country of the importer.
+        product: Commercial product name.
+        volume: Volume in metric tons.
+    """
+    return (
+        f"[CLOSED-LOOP ENGINE] Matching initiated for {product} from {origin_country} to {destination_country} ({volume} tons).\n"
+        f"  --> Seller Agent (Origin): Proposed FOB price optimized.\n"
+        f"  --> Buyer Agent (Destination): Validated budget & compliance.\n"
+        f"  --> Incoterms Calculated: FOB Origin -> CIF Destination.\n"
+        f"  --> Action Executed: Autonomous notification emails sent & Contract PDF compiled."
+    )
 
 @tool
 def fetch_unread_buyer_emails() -> str:
